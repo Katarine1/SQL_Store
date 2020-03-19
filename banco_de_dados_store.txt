@@ -1,0 +1,71 @@
+Create database store;
+
+Use store;
+
+Create table salesman (
+
+	id_salesman int not null primary key auto_increment,
+	name varchar(100)
+
+);
+
+Create table product (
+
+	id_product int not null primary key auto_increment,
+	name_product varchar(100),
+	value_product float(8,2)
+	
+);
+
+Create table sell_product (
+
+	id_salesman int not null,
+	id_product int not null,
+	Foreign key (id_salesman) References salesman (id_salesman),
+	Foreign key (id_product) References product (id_product)
+
+);
+
+Create table type (
+
+	id_type int not null primary key auto_increment,
+	description_type varchar(100),
+	id_product int not null,
+	Foreign key (id_product) References product (id_product)
+
+);
+
+Create table description (
+
+	id_description int not null primary key auto_increment,
+	description varchar(200),
+	id_product int not null,
+	Foreign key (id_product) References product (id_product)
+
+);
+
+
+Insert into salesman (name) values ('Felipe Grandson');
+Insert into salesman (name) values ('Marian Gomes');
+Insert into salesman (name) values ('Paul Sá');
+Insert into salesman (name) values ('Adriana Good');
+
+Insert into product (name_product, value_product) values ('Couch','234.55');
+Insert into product (name_product, value_product) values ('Table','354.05');
+Insert into product (name_product, value_product) values ('Wardrobe','859.23');
+Insert into product (name_product, value_product) values ('Bed','699.86');
+
+Insert into sell_product (id_salesman, id_product) values (0,1);
+Insert into sell_product (id_salesman, id_product) values (1,0);
+Insert into sell_product (id_salesman, id_product) values (2,3);
+Insert into sell_product (id_salesman, id_product) values (3,2);
+
+Insert into type(description_type, id_product) values ('Leather',0);
+Insert into type(description_type, id_product) values ('wood',1);
+Insert into type(description_type, id_product) values ('wood',2);
+Insert into type(description_type, id_product) values ('Iron',3);
+
+Insert into description(description, id_product) values ('Four seater leather sofa',0);
+Insert into description (description, id_product) values ('Round table with six wooden seats',1);
+Insert into description (description, id_product) values ('Wooden cabinet with four doors',2);
+Insert into description (description, id_product) values ('Double white iron bed',3);
